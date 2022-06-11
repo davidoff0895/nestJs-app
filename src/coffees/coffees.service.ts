@@ -43,7 +43,7 @@ export class CoffeesService {
       relations: ['flavors'],
     });
     if (!coffee) {
-      throw new NotFoundException(`coffee ${id} is not found`);
+      throw new NotFoundException(`Coffee #${id} not found`);
     }
     return coffee;
   }

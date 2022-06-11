@@ -24,7 +24,9 @@
     "migration:show": "yarn typeorm migration:show",
     "migration:run": "yarn typeorm migration:run",
     "migration:revert": "yarn typeorm migration:revert",
-    "migration:create": "typeorm-ts-node-commonjs migration:create ./src/migrations/CoffeeRefactor"
+    "migration:create": "typeorm-ts-node-commonjs migration:create ./src/migrations/CoffeeRefactor",
+    "pretest:e2e": "docker-compose up -d test-db",
+    "posttest:e2e": "docker-compose stop test-db && docker-compose rm -f test-db"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -73,7 +75,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -82,6 +84,9 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^src(.*)$": "<rootDir>/src$1"
+    }
   }
 }
