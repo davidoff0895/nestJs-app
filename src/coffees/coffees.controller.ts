@@ -18,13 +18,16 @@ import { Request } from 'express';
 import { Public } from 'src/common/decorators/public.decorator';
 import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
 import { Protocol } from 'src/common/decorators/protocol.decorators';
+import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
   constructor(
     private coffeesService: CoffeesService,
     @Inject(REQUEST) private request: Request,
   ) {}
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   @Public()
   @Get()
   findAll(@Query() paginationQuery: PaginationQueryDto) {
