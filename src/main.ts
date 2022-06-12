@@ -34,6 +34,6 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   await app.listen(3000);
   const serverUrl = await app.getUrl();
-  console.log(`started on: ${serverUrl}`);
+  console.log(`Started on: ${serverUrl}`);
 }
 bootstrap();

@@ -8,9 +8,12 @@ import { DatabaseModule } from 'src/database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
 import appConfig from 'src/config/app.config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MongoCoffeesModule } from 'src/mongo-coffees/mongo-coffees.module';
 
 @Module({
   imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/nest-course'),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'postgres',
@@ -30,6 +33,7 @@ import appConfig from 'src/config/app.config';
     CoffeeRatingModule,
     DatabaseModule,
     CommonModule,
+    MongoCoffeesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
